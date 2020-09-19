@@ -35,8 +35,8 @@ model.eval()
 
 with torch.no_grad():
     # predict class
-    output = torch.squeeze(model(img))
-    predict = torch.softmax(output, dim=0)
+    predict = torch.squeeze(model(img))
+    # predict = torch.softmax(predict, dim=0)
     print(predict)
     # predict_cla = torch.argmax(predict).numpy()
 print(list((class_indict[str(predict_cla)], predict[predict_cla].item()) for predict_cla in range(5)))
