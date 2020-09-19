@@ -36,6 +36,7 @@ for epoch in range(epo):
         # zero_grad(): Clears the gradients of all optimized torch.Tensor s.
         optimizer.zero_grad()
         outputs = model(images.to(device))
+        outputs = torch.softmax(outputs, dim=1)
         loss = loss_function(outputs, labels.to(device))
         loss.backward()
         optimizer.step()
