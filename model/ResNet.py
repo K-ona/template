@@ -1,10 +1,9 @@
 import torch.nn as nn
 import torch
 
-
 class BasicBlock(nn.Module):
     expansion = 1
-
+    # downsample 对应的是原输入的下采样(不然block的输入输出形状不同，相加没有意义)
     def __init__(self, in_channel, out_channel, stride=1, downsample=None):
         super(BasicBlock, self).__init__()
         self.conv1 = nn.Conv2d(in_channels=in_channel, out_channels=out_channel,
@@ -92,6 +91,7 @@ class ResNet(nn.Module):
         self.layer3 = self._make_layer(block, 256, blocks_num[2], stride=2)
         self.layer4 = self._make_layer(block, 512, blocks_num[3], stride=2)
         if self.include_top:
+            # AdaptiveAvgPool2d: 自适应计算平均池化，最后两维的矩阵H*W被平均池化为（1, 1）
             self.avgpool = nn.AdaptiveAvgPool2d((1, 1))  # output size = (1, 1)
             self.fc = nn.Linear(512 * block.expansion, num_classes)
 
