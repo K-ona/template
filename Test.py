@@ -1,14 +1,21 @@
-# 稀疏初始化
-# torch.nn.init.sparse_(tensor, sparsity, std=0.01)
-import torch
-import torch.nn as nn
+#导入相关包
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+import seaborn as sns
+# %matplotlib inline
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置加载的字体名
+plt.rcParams['axes.unicode_minus'] = False # 解决保存图像是负号'-'显示为方块的问题
+sns.set_style('white')   #设置图形背景样式为white
 
-tensor = torch.tensor([ [1, 2, 3],
-                        [2, 3, 4],
-                        [4, 5, 6] ], dtype=torch.float)
+df = pd.read_csv('./cook.csv') 
+df['难度'] = df['用料数'].apply(lambda x:'简单'if x < 5 else ('一般' if x < 15 else '较难')) #增加难度字段
+df = df[['菜谱','用料','用料数','难度','菜系','评分','用户']] #选择需要的列
+df.sample(5)  #查看数据集的随机5行数据
 
-# 从正态分布N～（0. std）中进行稀疏化，使每一个column有一部分为0
-# sparsity 每一个column稀疏的比例，即为0的比例
-
-nn.init.sparse_(tensor, sparsity=0.1)
-print(tensor)
+#distplot()输出直方图，默认拟合出密度曲线
+plt.figure(figsize=(10, 6)) #设置画布大小
+rate = df['评分']
+sns.histplot(rate,color="salmon",bins=20) #参数color样式为salmon，bins参数设定数据片段的数量
+plt.show()
