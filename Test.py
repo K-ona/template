@@ -1,15 +1,8 @@
-import matplotlib.pyplot as plt
-import numpy as np
+def find_all_substr(str, sub):
+    sub_index = [-1]
+    while str.find(sub, sub_index[-1] + 1) != -1:
+        sub_index.append(str.find(sub, sub_index[-1] + 1))
 
-x = np.linspace(-3, 3, 50)
-y1 = x ** 2
-y2 = x * 2 + 1
+    return sub_index[1:]
 
-plt.figure(num=160, figsize=(8, 5))
-plt.plot(x, y1)
-
-plt.figure(num=150)
-plt.plot(x, y2)
-plt.plot(x, y1, color = 'red', linewidth = 1.0, linestyle = '--')
-
-plt.show()
+print(find_all_substr('sdadsadasdsadsagdgd', 'a'))
