@@ -44,3 +44,4 @@ with open('data.csv','r',encoding = 'utf8') as fp:
     reader = csv.reader(fp)
     for row in reader:
         print(row)
+
