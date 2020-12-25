@@ -1,8 +1,10 @@
 import numpy as np
 import torch
 import math
+from collections import defaultdict
 
-data = torch.from_numpy(np.random.random(size=(10, 10))) * 10
-print(data.size())
-print(data.unsqueeze(-2).size())
-pass
+d = defaultdict(int)
+d[('sds', 'sas')] = 2
+d[('sds', 'ss')] = 3
+print(d)
+print(set([x[0] for x in list(d.items())]))
