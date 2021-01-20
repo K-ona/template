@@ -1,2 +1,0 @@
-s = 'sdsad'
-print([s])
