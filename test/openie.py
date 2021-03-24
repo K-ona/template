@@ -37,7 +37,6 @@ for sentence in core_nlp_output2['sentences']:
 # if triples2 == triples:
 #     print('same')
 # else :
-
     # print(triples)
 for _ in triples:
     print(_)
