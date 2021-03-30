@@ -62,9 +62,9 @@ class MZiTu:
         total_image = len(img_url_list)
         meizi_dir = self.path if self.path else 'meizitu'
         finall_dir = meizi_dir + '/' + '[{}P]'.format(str(total_image)) + dir_name
-        if os.path.isdir("D:\Python爬取\图片/"+finall_dir) != True:  # 如果保存的路径不存在
-            os.makedirs(r"D:\Python爬取\图片/"+finall_dir)  # 如果不存在。我们将创立这个路径
-        path = "D:\Python爬取\图片/"+finall_dir+"/"
+        if os.path.isdir(r"E:\Python爬取\图片\\"+finall_dir) != True:  # 如果保存的路径不存在
+            os.makedirs(r"E:\Python爬取\图片\\"+finall_dir)  # 如果不存在。我们将创立这个路径
+        path = r"E:\Python爬取\图片\\"+finall_dir+"\\"
         return path
  
     # 保存img
@@ -74,7 +74,7 @@ class MZiTu:
                 image_data = self.send_request(img_url)
             except:
                 continue
-            file_name = final_dir + '/' + img_url[-9:]
+            file_name = final_dir + '\\' + img_url[-9:]
             with open(file_name, 'wb') as image:
                 image.write(image_data)
             print("*" * 14, img_url, '下载完成', "*" * 14)
