@@ -1,7 +1,19 @@
-from transformers import BertTokenizer, BertModel
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-model = BertModel.from_pretrained("bert-base-uncased")
-text = "Replace me by any text you'd like."
-encoded_input = tokenizer(text, return_tensors='pt')
-output = model(**encoded_input)
-print(output)
+def split_text_with_whitespace(text):
+    res = []
+    text = text.strip()
+
+    tmp = ''
+    for ch in text:
+        if u'\u4e00' <= ch <= u'\u9fff' or ch == ' ' or ch == 'の':
+            if tmp != '':
+                res.append(tmp)
+                tmp = ''
+            res.append(ch)
+        else:
+            tmp += ch
+    if tmp != '':
+        res.append(tmp)
+
+    return res
+
+print(split_text_with_whitespace("玩狼人杀吗/你爱玩狼人杀   这个挺好玩的   狼人杀挺好玩的"))
