@@ -1,19 +1,9 @@
-def split_text_with_whitespace(text):
-    res = []
-    text = text.strip()
+import pandas as pd
 
-    tmp = ''
-    for ch in text:
-        if u'\u4e00' <= ch <= u'\u9fff' or ch == ' ' or ch == 'の':
-            if tmp != '':
-                res.append(tmp)
-                tmp = ''
-            res.append(ch)
-        else:
-            tmp += ch
-    if tmp != '':
-        res.append(tmp)
+df = pd.DataFrame([[1, 2, 3], [4, 5, 6]])
+df.columns = ['h', 'w', 'l']
 
-    return res
-
-print(split_text_with_whitespace("玩狼人杀吗/你爱玩狼人杀   这个挺好玩的   狼人杀挺好玩的"))
+print(df)
+print(df['h'])
+print(df.loc())
+print(df.iloc[[0]])
